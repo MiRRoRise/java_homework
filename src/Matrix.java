@@ -134,6 +134,13 @@ public class Matrix {
     }
 
     public Matrix divide(Matrix other) {
+        if (other.get_rows() != other.get_cols()) {
+            throw new IllegalArgumentException("Матрица должна быть квадратной");
+        }
+        Complex det = determinant(other);
+        if (det.equals(new Complex(0, 0))) {
+            throw new IllegalArgumentException("Определитель матрицы равен нулю, нахождение обратной невозможно");
+        }
         Matrix inverse = Inverse(other);
         Matrix result = new Matrix(this.get_rows(), other.get_cols(), 0);
         for (int i = 0; i < this.get_rows(); i++) {
