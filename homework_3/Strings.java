@@ -43,7 +43,7 @@ public class Strings {
         int year = Integer.parseInt(times[2]);
         LocalDate date_now = LocalDate.now();
 
-        if (month < 1 || month > 12 || day < 1 || day > LocalDate.of(year, month, 1).lengthOfMonth() || year > date_now.getYear()) {
+        if (month < 1 || month > 12 || day < 1 || day > LocalDate.of(year, month, 1).lengthOfMonth() || LocalDate.of(year, month, day).isAfter(date_now)) {
             throw new IllegalArgumentException("Неккоректный ввод даты");
         }
 
@@ -72,12 +72,14 @@ public class Strings {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите ФИО: ");
         String in_name = scanner.nextLine();
-        System.out.print("Введите дату рождения (в формате число.месяц.год): ");
-        String birthday = scanner.nextLine();
 
         String initials = get_initials(in_name);
         String[] name = in_name.split(" ");
         String gender = get_gender(name[2]);
+
+        System.out.print("Введите дату рождения (в формате число.месяц.год): ");
+        String birthday = scanner.nextLine();
+
         int age = get_age(birthday);
         String age_end = get_end(age);
 
