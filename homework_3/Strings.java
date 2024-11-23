@@ -13,7 +13,7 @@ public class Strings {
             } else {
                 // Возвращаем фамилию + инициалы
                 return initials[0] + " " + initials[1].charAt(0) + "." + initials[2].charAt(0) + ".";
-                }
+            }
         } catch (IllegalArgumentException e) {
             System.out.println("Ошибка в получении инициалов: " + e.getMessage());
             return "";
